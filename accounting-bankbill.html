@@ -496,6 +496,13 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label">请选择地区</label>
+								<div class="col-sm-8">
+									<select id="regionId" class="form-control" style="width:130px;">
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-12 control-label" id="show_message" style="text-align: center;color:red;"></label>
 							</div>							
 							</form>
@@ -774,7 +781,29 @@
 				  {
 				  		console.log(this.current_row);
 				  		$("#id").val(this.current_row.id);	  		
-				  }				      
+				  }	
+				  
+				  //绑定区域列表
+			    var obj_regionId = $("#regionId");
+			    $("#regionId").empty();
+			    obj_regionId.append("<option value='0'>请选择</option>");
+			    $.ajax({
+	          url: url + 'region/list_all',
+	          type: 'GET',
+	          dataType: 'json'
+	        }).done(function(response) {
+	        	var region_data = response.data;
+	        	for (var item in region_data)
+	        	{
+	        			obj_regionId.append("<option value='"+region_data[item].id+"'>"+region_data[item].name+"</option>");
+	        			var region_sub = region_data[item].regionList;
+	        			for (var itemsub in region_sub)
+	        			{
+	        					obj_regionId.append("<option value='"+region_sub[itemsub].id+"'>---"+region_sub[itemsub].name+"</option>");
+	        			}
+	        	}
+	        	obj_regionId.val(v.regionId);
+	        });			      
 			});
 			
 			function uploadFile()
@@ -788,7 +817,13 @@
 					var formData = new FormData();					
 					formData.append("file",$("#f2")[0].files[0]);
 					$('#upload_id #show_message').html('');
-					if ($("#f2").val() == '') return;
+					if ($("#f2").val() == '' || $("#regionId").val() == '0')
+					{
+							$('#upload_id #show_message').css("color","red");
+			        $('#upload_id #show_message').html('文件 / 地区都必须选择，请确认。');
+							return;
+					}
+					formData.append("regionId",$("#regionId").val());
 					show_loading();
 					
 					$.ajax({
