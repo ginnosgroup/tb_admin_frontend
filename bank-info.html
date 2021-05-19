@@ -176,7 +176,8 @@
 	        			v.bankinfo = 'Account Name: '+data.bank;
 	        			v.bankinfo += '\nAccount No.: '+data.accountNo;
 	        			v.bankinfo += '\nBsb: '+data.bsb;
-	        			v.bankinfo += '\n为保证您的权益转账请备注唯一Code: '+data.code;
+	        			v.bankinfo += '\n为保证您的权益转账请在【Description】中填写唯一Code: '+data.code;
+	        			v.bankinfo += '\n（ANZ 银行请填写在Message）';
 			        	$("#accountName").html(data.bank);
 			        	$("#accountNo").html(data.accountNo);
 			        	$("#bsb").html(data.bsb);
