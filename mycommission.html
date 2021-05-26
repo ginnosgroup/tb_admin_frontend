@@ -669,14 +669,14 @@
 						{
 								if (this.adviserId == undefined)
 								{
-										json['adviserId'] = this.adviser_id;
+										//json['adviserId'] = this.adviser_id;
 								}else
 								{
-										if (that.adviserId != '0') json['adviserId'] = that.adviserId;
+										if (that.adviserId != '0' && that.adviserId != null) json['adviserId'] = that.adviserId;
 								}
 						}else
 						{
-								if (that.adviserId != '0') json['adviserId'] = that.adviserId;
+								if (that.adviserId != '0' && that.adviserId != null) json['adviserId'] = that.adviserId;
 						}				
 						if (that.type != '') json['type'] = that.type;
 						if (that.startHandlingDate != '') json['startHandlingDate'] = that.startHandlingDate;
