@@ -691,6 +691,7 @@
 						if (that.userId != '0') json['userId'] = that.userId;
 						if (this.gw_regionid != 'null')
 						{
+								if (that.adviserId == null) that.adviserId = 0;
 								if (this.adviserId == undefined)
 								{
 										//json['adviserId'] = this.adviser_id;
@@ -744,6 +745,7 @@
 						{
 								down_url += "&userId=";
 						}
+						if (that.adviserId == null) that.adviserId = 0;
 						if (typeof(that.adviserId) != "undefined")
 						{
 								down_url += "&adviserId="+that.adviserId;
