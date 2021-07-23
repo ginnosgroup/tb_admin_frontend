@@ -692,6 +692,9 @@
 						case 'VA':
 								str = '签证申请';
 						break;
+						case 'ZD':
+								str = '州担';
+						break;
 				}
 				return str;
 			}
@@ -753,6 +756,7 @@
 			    obj_type.append("<option value='EOI'>EOI</option>");
 			    obj_type.append("<option value='SA'>学校</option>");
 			    obj_type.append("<option value='VA'>签证</option>");
+			    obj_type.append("<option value='ZD'>州担</option>");
 			    obj_type.val(type_val);
 			    //绑定服务项目列表
 			    var obj_serviceId = $("#t1");
